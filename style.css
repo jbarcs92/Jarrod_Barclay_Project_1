@@ -1,0 +1,187 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(0, 110, 0);
+    height: 100vh;
+    margin: 0;
+    border: 1vmin solid gold;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+header > h1 {
+    color: red;
+    font-size: 5vmin;
+    margin-top: 1vmin;
+}
+
+header > div {
+    font-size: 4vmin;
+    height: 6vmin;
+    background-color: white;
+    border: 0.7vmin solid black;
+    border-radius: 1vmin;
+    position: absolute;
+    right: 0.5em;
+    top: 0.5em;
+}
+
+#dealerLine {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5vmin;
+}
+
+#dealerLine > div:not(#dealerTotal) {
+    background-color: white;
+    border: 0.1vmin solid black;
+    border-radius: 0.5vmin;
+    height: 15vmin;
+    width: 10vmin;
+    margin-left: 1vmin; 
+    visibility: hidden;   
+}
+
+#dealerTotal {
+    font-size: 3vmin;
+    background-color: white;
+    border: 0.5vmin solid black;
+    border-radius: 10%;
+    padding: 0.5vmin;
+}
+
+#playerLine {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15vmin;
+}
+
+#playerTotal {
+    font-size: 3vmin;
+    background-color: white;
+    border: 0.5vmin solid black;
+    border-radius: 10%;
+    padding: 0.5vmin;
+}
+
+#playerLine > div:not(#playerTotal) {
+    background-color: white;
+    border: 0.1vmin solid black;
+    border-radius: 0.5vmin;
+    height: 15vmin;
+    width: 10vmin;
+    margin-left: 1vmin;  
+    visibility: hidden;  
+}
+
+#winningMessage {
+    font-size: 5vmin;
+    border: 0.7vmin solid black;
+    border-radius: 1vmin;
+    visibility: hidden;
+}
+
+#wagerCircle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    bottom: 5em;
+    right: 55em;
+}
+
+#wager {
+    height: 15vmin;
+    width: 15vmin;
+    border: 1vmin solid black;
+    border-radius: 50%;
+}
+
+p {
+    font-size: 3vmin;
+    margin-top: -0.5vmin;
+}
+
+
+#chipButtons {
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    right: 5em;
+    bottom: 2em;
+}
+
+#playButtons {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 0.5em;
+    right: 50em;
+}
+
+#playButtons > button {
+    font-size: 40px;
+    border: 0.5vmin solid black;
+    margin-bottom: 20px;
+}
+
+#deal {
+    margin-right: 10px;
+}
+
+#stand {
+    margin-right: 10px;
+}
+
+#hit {
+    margin-right: 10px;
+}
+
+#newBet {
+    margin-right: 10px;
+}
+
+#chipButtons > button {
+    font-size: 25px;
+    border-radius: 50%;
+    height: 50px;
+    width: 70px;
+    text-align: center;
+}
+
+#chipButtons > button:hover {
+    transform: scale(1.5);
+}
+
+#oneDollar {
+    border: 1vmin solid grey;
+    margin-right: 7px;
+}
+
+#fiveDollar {
+    border: 1vmin solid red;
+    margin-right: 7px;
+}
+
+#tenDollar {
+    border: 1vmin solid blue;
+    margin-right: 7px;
+}
+
+#fiftyDollar {
+    border: 1vmin solid green;
+    margin-right: 7px;
+}
+
+#hundredDollar {
+    border: 1vmin solid black;
+    margin-right: 7px;
+}
