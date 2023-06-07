@@ -39,14 +39,14 @@ header > div {
     margin-top: 5vmin;
 }
 
-#dealerLine > div:not(#dealerTotal) {
-    background-color: white;
-    border: 0.1vmin solid black;
-    border-radius: 0.5vmin;
+#dealerLine > img {
+    /* background-color: white; */
+    /* border: 0.1vmin solid black; */
+    /* border-radius: 0.5vmin; */
     height: 15vmin;
     width: 10vmin;
     margin-left: 1vmin; 
-    visibility: hidden;   
+    /* visibility: hidden;    */
 }
 
 #dealerTotal {
@@ -72,14 +72,14 @@ header > div {
     padding: 0.5vmin;
 }
 
-#playerLine > div:not(#playerTotal) {
-    background-color: white;
+#playerLine > img {
+    /* background-color: white;
     border: 0.1vmin solid black;
-    border-radius: 0.5vmin;
+    border-radius: 0.5vmin; */
     height: 15vmin;
     width: 10vmin;
     margin-left: 1vmin;  
-    visibility: hidden;  
+    /* visibility: hidden;   */
 }
 
 #winningMessage {
@@ -93,9 +93,7 @@ header > div {
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: absolute;
-    bottom: 5em;
-    right: 55em;
+    margin-top: 5vmin;
 }
 
 #wager {
@@ -110,6 +108,11 @@ p {
     margin-top: -0.5vmin;
 }
 
+footer {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1vmin;
+}
 
 #chipButtons {
     display: flex;
@@ -122,15 +125,11 @@ p {
 #playButtons {
     display: flex;
     justify-content: center;
-    position: absolute;
-    bottom: 0.5em;
-    right: 50em;
 }
 
 #playButtons > button {
     font-size: 40px;
     border: 0.5vmin solid black;
-    margin-bottom: 20px;
 }
 
 #deal {
