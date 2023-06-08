@@ -40,13 +40,9 @@ header > div {
 }
 
 #dealerLine > img {
-    /* background-color: white; */
-    /* border: 0.1vmin solid black; */
-    /* border-radius: 0.5vmin; */
     height: 15vmin;
     width: 10vmin;
     margin-left: 1vmin; 
-    /* visibility: hidden;    */
 }
 
 #dealerTotal {
@@ -73,19 +69,22 @@ header > div {
 }
 
 #playerLine > img {
-    /* background-color: white;
-    border: 0.1vmin solid black;
-    border-radius: 0.5vmin; */
     height: 15vmin;
     width: 10vmin;
     margin-left: 1vmin;  
-    /* visibility: hidden;   */
 }
 
 #winningMessage {
+    text-align: center;
     font-size: 5vmin;
     border: 0.7vmin solid black;
     border-radius: 1vmin;
+    background-color: white;
+    margin-top: 5vmin;
+    margin-bottom: -8vmin;
+    padding: 0.5vmin 0.5vmin 0.5vmin 0.5vmin;
+    margin-right: 60vmin;
+    margin-left: 60vmin;
     visibility: hidden;
 }
 

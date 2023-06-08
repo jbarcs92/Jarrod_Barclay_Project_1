@@ -55,7 +55,6 @@ const CARDS = {
 
 const BACKCARD = 'cards/BACK.png';
 
-let winner;
 let totalp;
 let totald;
 let resultsP;
@@ -102,7 +101,6 @@ dealBtn.addEventListener('click', handleDeal);
 standBtn.addEventListener('click', handleStand);
 hitBtn.addEventListener('click', handleHit);
 
-
 init();
 
 function init() {
@@ -122,7 +120,7 @@ function init() {
   dCard7 = null;
   totalp = 0;
   totald = 0;
-  winner = null;
+  renderNewBet();
 }
 
 function handleDeal() {
@@ -133,6 +131,7 @@ function handleDeal() {
   totald = CARDS[dCard1].value;
   renderDeal();
   renderTotalScore();
+  renderMessage();
 }
 
 function handleHit() {
@@ -140,49 +139,94 @@ function handleHit() {
     pCard7 = getRandomCard();
     totalp = CARDS[pCard1].value + CARDS[pCard2].value + CARDS[pCard3].value + CARDS[pCard4].value + CARDS[pCard5].value + CARDS[pCard6].value + CARDS[pCard7].value;
     renderTotalScore();
+    renderMessage();
   }
   if (pCard3 !== null && pCard4 !== null && pCard5 !== null && pCard6 == null) {
     pCard6 = getRandomCard();
     totalp = CARDS[pCard1].value + CARDS[pCard2].value + CARDS[pCard3].value + CARDS[pCard4].value + CARDS[pCard5].value + CARDS[pCard6].value;
     renderTotalScore();
+    renderMessage();
   }
   if (pCard3 !== null && pCard4 !== null && pCard5 == null) {
     pCard5 = getRandomCard();
     totalp = CARDS[pCard1].value + CARDS[pCard2].value + CARDS[pCard3].value + CARDS[pCard4].value + CARDS[pCard5].value;
     renderTotalScore();
+    renderMessage();
   }
   if (pCard3 !== null && pCard4 == null) {
     pCard4 = getRandomCard();
     totalp = CARDS[pCard1].value + CARDS[pCard2].value + CARDS[pCard3].value + CARDS[pCard4].value;
     renderTotalScore();
+    renderMessage();
   }
   if (pCard3 == null) {
     pCard3 = getRandomCard();
     totalp = CARDS[pCard1].value + CARDS[pCard2].value + CARDS[pCard3].value;
     renderTotalScore();
+    renderMessage();
   }
 renderHit();
 }
 
 function handleStand() {
-dCard2 = getRandomCard();
-totald = CARDS[dCard1].value + CARDS[dCard2].value;
-if (totald <= 21) {
-  setTimeout(renderTotalScore, 1500);
-}
-setTimeout(renderStand, 1500);
+  if (totald <= 21 && dCard2 == null) {
+    dCard2 = getRandomCard();
+    totald = CARDS[dCard1].value + CARDS[dCard2].value;
+    setTimeout(renderTotalScore, 1500);
+    setTimeout(renderStand, 1500);
+    setTimeout(renderMessage, 1500);
+  }
+  setTimeout(function() {
+    if (totald < 17 && dCard2 !== null && dCard3 == null) {
+    dCard3 = getRandomCard();
+    totald = CARDS[dCard1].value + CARDS[dCard2].value + CARDS[dCard3].value;
+    setTimeout(renderTotalScore, 1500);
+    setTimeout(renderStand, 1500);
+    setTimeout(renderMessage, 1500);
+    }
+  }, 1500);
+  setTimeout(function() {
+    if (totald < 17 && dCard2 !== null && dCard3 !== null && dCard4 == null) {
+    dCard4 = getRandomCard();
+    totald = CARDS[dCard1].value + CARDS[dCard2].value + CARDS[dCard3].value + CARDS[dCard4].value;
+    setTimeout(renderTotalScore, 1500);
+    setTimeout(renderStand, 1500);
+    setTimeout(renderMessage, 1500);
+    }
+  }, 1500);
+  setTimeout(function() {
+    if (totald < 17 && dCard2 !== null && dCard3 !== null && dCard4 !== null && dCard5 == null) {
+    dCard5 = getRandomCard();
+    totald = CARDS[dCard1].value + CARDS[dCard2].value + CARDS[dCard3].value + CARDS[dCard4].value + CARDS[dCard5].value;
+    setTimeout(renderTotalScore, 1500);
+    setTimeout(renderStand, 1500);
+    setTimeout(renderMessage, 1500);
+    }
+  }, 1500);
+  setTimeout(function() {
+    if (totald < 17 && dCard2 !== null && dCard3 !== null && dCard4 !== null && dCard5 !== null && dCard6 == null) {
+    dCard6 = getRandomCard();
+    totald = CARDS[dCard1].value + CARDS[dCard2].value + CARDS[dCard3].value + CARDS[dCard4].value + CARDS[dCard5].value + CARDS[dCard6].value;
+    setTimeout(renderTotalScore, 1500);
+    setTimeout(renderStand, 1500);
+    setTimeout(renderMessage, 1500);
+    }
+  }, 1500);
+  setTimeout(function() {
+    if (totald < 17 && dCard2 !== null && dCard3 !== null && dCard4 !== null && dCard5 !== null && dCard6 !== null && dCard7 == null) {
+    dCard7 = getRandomCard();
+    totald = CARDS[dCard1].value + CARDS[dCard2].value + CARDS[dCard3].value + CARDS[dCard4].value + CARDS[dCard5].value + CARDS[dCard6].value + CARDS[dCard7].value;
+    setTimeout(renderTotalScore, 1500);
+    setTimeout(renderStand, 1500);
+    setTimeout(renderMessage, 1500);
+    }
+  }, 1500);
 }
 
 function getRandomCard() {
   const card = Object.keys(CARDS);
   const cardIdx = Math.floor(Math.random() * card.length);
   return card[cardIdx];
-}
-
-function renderMessage() {
-  if (winner === 'T') {
-    message.innerText = "It's a Push!";
-  } 
 }
 
 function renderDeal() {
@@ -216,6 +260,75 @@ dealerSixthCard.src = CARDS[dCard6].img;
 dealerSeventhCard.src = CARDS[dCard7].img;
 }
 
+function renderMessage() {
+  if (CARDS[pCard1].value + CARDS[pCard2].value == 21) {
+    message.innerText = "BLACKJACK!";
+    message.style.visibility = "visible";
+    newBetBtn.style.visibility = "visible";
+    dealBtn.style.visibility = "hidden";
+    standBtn.style.visibility = "hidden";
+    hitBtn.style.visibility = "hidden";
+  }
+  if (totalp > 21) {
+    message.innerText = "Bust: Lose!";
+    message.style.visibility = "visible";
+    standBtn.style.visibility = "hidden";
+    hitBtn.style.visibility = "hidden";
+    newBetBtn.style.visibility = "visible";
+  }
+  if (totald > 21) { 
+    message.innerText = "Win!";
+    message.style.visibility = "visible";
+    newBetBtn.style.visibility = "visible";
+    standBtn.style.visibility = "hidden";
+    hitBtn.style.visibility = "hidden";
+  }
+  if (totalp < 22 && totald > 10 && totald < 22 && totald > totalp) { 
+    message.innerText = "Lose!";
+    message.style.visibility = "visible";
+    newBetBtn.style.visibility = "visible";
+    standBtn.style.visibility = "hidden";
+    hitBtn.style.visibility = "hidden";
+  }
+  if (totalp < 22 && totald > 16 && totalp > totald) { 
+    message.innerText = "Win!";
+    message.style.visibility = "visible";
+    newBetBtn.style.visibility = "visible";
+    standBtn.style.visibility = "hidden";
+    hitBtn.style.visibility = "hidden";
+  }
+  if (totald > 16 && totald == totalp) {
+    message.innerText = "Push!";
+    message.style.visibility = "visible";
+    newBetBtn.style.visibility = "visible";
+    standBtn.style.visibility = "hidden";
+    hitBtn.style.visibility = "hidden";
+  }
+}
+
+function renderNewBet() {
+  newBetBtn.style.visibility = "visible";
+  standBtn.style.visibility = "visible";
+  hitBtn.style.visibility = "visible";
+  dealBtn.style.visibility = "visible";
+  message.style.visibility = "hidden";
+  playerScore.innerText = totalp;
+  dealerScore.innerText = totald;
+  playerFirstCard.src = " ";
+  playerSecondCard.src = " ";
+  playerThirdCard.src = " ";
+  playerFourthCard.src = " ";
+  playerFifthCard.src = " ";
+  playerSixthCard.src = " ";
+  playerSeventhCard.src = " ";
+  dealerFirstCard.src = " ";
+  dealerSecondCard.src = " ";
+  dealerThirdCard.src = " ";
+  dealerFourthCard.src = " ";
+  dealerFifthCard.src = " ";
+  dealerSixthCard.src = " ";
+  dealerSeventhCard.src = " ";
+}
 
 
 
@@ -228,54 +341,3 @@ dealerSeventhCard.src = CARDS[dCard7].img;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*----- constants -----*/
-// Define an object for the different chip amounts.
-//Define an object for the cards that includes the card, and it's numerical value.
-
-
-
-  /*----- state variables -----*/
-//Define variables for whose turn it is, the winner, the player and dealers total, 
-// and the players current balance.
-
-  /*----- cached elements  -----*/
-//store the different chip amount buttons
-//store the deal, stand, hit, and new bet buttons
-//store win/no-win/push message
-//store the players hand
-//store teh dealers hand
-
-  /*----- event listeners -----*/
-//add event listener for when a betting chip is selected
-//add event listener for when selecting the deal, stand, hit, and new bet buttons
-
-  /*----- functions -----*/
-  //initialize state variables
-  //render the table
-  //render the win/no-win/push message
-  //render the deal, stand, hit, and new bet buttons
-
-  //handle player selecting a bet amount
-  //handle the player selecting the deal button
-  //handle the player selecting the hit button
-  //handle the player selecting tht stand button
-    //After player stands, flip turn to dealer by multiplying by -1
-    //Dealer will keep hitting or stand based off current total
-//compare player and dealer totals to determine message to display
-//update player balance with bet amount won/lost
-//handle the player selecting the new bet button
