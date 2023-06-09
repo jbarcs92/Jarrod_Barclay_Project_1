@@ -17,6 +17,6 @@ How do you lose to the dealer?
 
 <strong>Game link:</strong> 
 
-<strong>Game Instructions:<strong> First choose your wager amount by clicking on one of the betting chips on the screen. Then click on "DEAL" to get your first two cards. You can then continue to get dealt cards by clicking "HIT". When you want to stop receiving cards, click on "STAND". The dealer will then turn over their hole card and continue to deal themselves cards as long as their total is under 17 or they bust. Your cash balance will either increase or decrease by your wager amount based off who won the hand. If you and the dealer end up with the same total, then that hand is a push.  
+<strong>Game Instructions:</strong> First choose your wager amount by clicking on one of the betting chips on the screen. Then click on "DEAL" to get your first two cards. You can then continue to get dealt cards by clicking "HIT". When you want to stop receiving cards, click on "STAND". The dealer will then turn over their hole card and continue to deal themselves cards as long as their total is under 17 or they bust. Your cash balance will either increase or decrease by your wager amount based off who won the hand. If you and the dealer end up with the same total, then that hand is a push.  
 
 <strong>Next Steps:</strong> Add ability to doubledown, split cards, surrender, and ability to choose if the value of an Ace is 1 or 11.
