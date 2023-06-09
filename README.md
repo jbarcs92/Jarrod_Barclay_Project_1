@@ -1,6 +1,6 @@
-Project Name: Blackjack
+<strong>Project Name:</strong> Blackjack
 
-Project Description: Blackjack is a casino banked game, meaning that players compete against the house rather than each other. The objective is to get a hand total of closer to 21 than the dealer without                      going over 21 (busting). At the start of a Blackjack game, the players and the dealer receive two cards each. The players' cards are normally dealt face up, while the dealer has one                        face down (called the hole card) and one face up.
+Game Description: Blackjack is a casino banked game, meaning that players compete against the house rather than each other. The objective is to get a hand total of closer to 21 than the dealer without                      going over 21 (busting). At the start of a Blackjack game, the players and the dealer receive two cards each. The players' cards are normally dealt face up, while the dealer has one                        face down (called the hole card) and one face up.
 
 How do you beat the dealer?
 
