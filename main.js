@@ -55,6 +55,10 @@ const CARDS = {
 
 const BACKCARD = 'cards/BACK.png';
 
+const CHIPS = [1, 5, 10, 50, 100];
+
+let cash = 500;
+let wager;
 let totalp;
 let totald;
 let resultsP;
@@ -95,11 +99,15 @@ const dealerSixthCard = document.getElementById('dealerCard6');
 const dealerSeventhCard = document.getElementById('dealerCard7');
 const playerScore = document.getElementById('playerTotal');
 const dealerScore = document.getElementById('dealerTotal');
+const wagerAmt = [...document.querySelectorAll('#chipButtons > button')];
+const currentWager = document.getElementById('wager');
+const cashBalance = document.getElementById('cashValue');
 
 newBetBtn.addEventListener('click', init);
 dealBtn.addEventListener('click', handleDeal);
 standBtn.addEventListener('click', handleStand);
 hitBtn.addEventListener('click', handleHit);
+document.getElementById('chipButtons').addEventListener('click', handleWager);
 
 init();
 
@@ -120,15 +128,28 @@ function init() {
   dCard7 = null;
   totalp = 0;
   totald = 0;
+  wager = null;
   renderNewBet();
 }
 
+function handleWager(evt) {
+  const wagerIdx = wagerAmt.indexOf(evt.target);
+  wager = CHIPS[wagerIdx];
+  if (cash <= 0) return;
+  renderWager();
+}
+
 function handleDeal() {
+  if (wager == null) return;
   pCard1 = getRandomCard();
   pCard2 = getRandomCard();
   dCard1 = getRandomCard();
   totalp = CARDS[pCard1].value + CARDS[pCard2].value;
   totald = CARDS[dCard1].value;
+  if (totalp == 21) {
+    cash += wager;
+    renderCash();
+  }
   renderDeal();
   renderTotalScore();
   renderMessage();
@@ -165,62 +186,83 @@ function handleHit() {
     renderTotalScore();
     renderMessage();
   }
-renderHit();
+  if (totalp > 21) {
+    cash -= wager;
+    renderCash();
+  }
+  renderHit();
 }
 
 function handleStand() {
   if (totald <= 21 && dCard2 == null) {
     dCard2 = getRandomCard();
     totald = CARDS[dCard1].value + CARDS[dCard2].value;
-    setTimeout(renderTotalScore, 1500);
-    setTimeout(renderStand, 1500);
-    setTimeout(renderMessage, 1500);
   }
   setTimeout(function() {
     if (totald < 17 && dCard2 !== null && dCard3 == null) {
     dCard3 = getRandomCard();
     totald = CARDS[dCard1].value + CARDS[dCard2].value + CARDS[dCard3].value;
-    setTimeout(renderTotalScore, 1500);
-    setTimeout(renderStand, 1500);
-    setTimeout(renderMessage, 1500);
     }
   }, 1500);
   setTimeout(function() {
     if (totald < 17 && dCard2 !== null && dCard3 !== null && dCard4 == null) {
     dCard4 = getRandomCard();
     totald = CARDS[dCard1].value + CARDS[dCard2].value + CARDS[dCard3].value + CARDS[dCard4].value;
-    setTimeout(renderTotalScore, 1500);
-    setTimeout(renderStand, 1500);
-    setTimeout(renderMessage, 1500);
     }
-  }, 1500);
+  }, 2500);
   setTimeout(function() {
     if (totald < 17 && dCard2 !== null && dCard3 !== null && dCard4 !== null && dCard5 == null) {
     dCard5 = getRandomCard();
     totald = CARDS[dCard1].value + CARDS[dCard2].value + CARDS[dCard3].value + CARDS[dCard4].value + CARDS[dCard5].value;
-    setTimeout(renderTotalScore, 1500);
-    setTimeout(renderStand, 1500);
-    setTimeout(renderMessage, 1500);
     }
-  }, 1500);
+  }, 3500);
   setTimeout(function() {
     if (totald < 17 && dCard2 !== null && dCard3 !== null && dCard4 !== null && dCard5 !== null && dCard6 == null) {
     dCard6 = getRandomCard();
     totald = CARDS[dCard1].value + CARDS[dCard2].value + CARDS[dCard3].value + CARDS[dCard4].value + CARDS[dCard5].value + CARDS[dCard6].value;
-    setTimeout(renderTotalScore, 1500);
-    setTimeout(renderStand, 1500);
-    setTimeout(renderMessage, 1500);
     }
-  }, 1500);
+  }, 4500);
   setTimeout(function() {
     if (totald < 17 && dCard2 !== null && dCard3 !== null && dCard4 !== null && dCard5 !== null && dCard6 !== null && dCard7 == null) {
     dCard7 = getRandomCard();
     totald = CARDS[dCard1].value + CARDS[dCard2].value + CARDS[dCard3].value + CARDS[dCard4].value + CARDS[dCard5].value + CARDS[dCard6].value + CARDS[dCard7].value;
-    setTimeout(renderTotalScore, 1500);
-    setTimeout(renderStand, 1500);
-    setTimeout(renderMessage, 1500);
     }
-  }, 1500);
+  }, 5500);
+setTimeout(renderMessage, 1000);
+setTimeout(renderMessage, 2000);
+setTimeout(renderMessage, 3000);
+setTimeout(renderMessage, 4000);
+setTimeout(renderMessage, 5000);
+setTimeout(renderMessage, 6000);
+setTimeout(renderStand, 1000);
+setTimeout(renderStand, 2000);
+setTimeout(renderStand, 3000);
+setTimeout(renderStand, 4000);
+setTimeout(renderStand, 5000);
+setTimeout(renderStand, 6000);
+setTimeout(renderTotalScore, 1000);
+setTimeout(renderTotalScore, 2000);
+setTimeout(renderTotalScore, 3000);
+setTimeout(renderTotalScore, 4000);
+setTimeout(renderTotalScore, 5000);
+setTimeout(renderTotalScore, 6000);
+setTimeout(checkWinner, 5600);
+setTimeout(renderCash, 5600);
+}
+
+function checkWinner() {
+  if (totald > 21) {
+    cash += wager;
+  }
+  if (totald > 16 && totald < 22 && totald == totalp) {
+    cash == cash;
+  }
+  if (totald > 16 && totald < 22 && totalp > totald) {
+    cash += wager;
+  }
+  if (totald > 16 && totald < 22 && totald > totalp) {
+    cash -= wager;
+  }
 }
 
 function getRandomCard() {
@@ -262,7 +304,7 @@ dealerSeventhCard.src = CARDS[dCard7].img;
 
 function renderMessage() {
   if (CARDS[pCard1].value + CARDS[pCard2].value == 21) {
-    message.innerText = "BLACKJACK!";
+    message.innerText = `BLACKJACK! Win: $${wager}`;
     message.style.visibility = "visible";
     newBetBtn.style.visibility = "visible";
     dealBtn.style.visibility = "hidden";
@@ -277,27 +319,27 @@ function renderMessage() {
     newBetBtn.style.visibility = "visible";
   }
   if (totald > 21) { 
-    message.innerText = "Win!";
+    message.innerText = `Win: $${wager}`;
     message.style.visibility = "visible";
     newBetBtn.style.visibility = "visible";
     standBtn.style.visibility = "hidden";
     hitBtn.style.visibility = "hidden";
   }
-  if (totalp < 22 && totald > 10 && totald < 22 && totald > totalp) { 
+  if (totald > 16 && totald < 22 && totald > totalp) { 
     message.innerText = "Lose!";
     message.style.visibility = "visible";
     newBetBtn.style.visibility = "visible";
     standBtn.style.visibility = "hidden";
     hitBtn.style.visibility = "hidden";
   }
-  if (totalp < 22 && totald > 16 && totalp > totald) { 
-    message.innerText = "Win!";
+  if (totald > 16 && totald < 22 && totalp > totald) { 
+    message.innerText = `Win: $${wager}`;
     message.style.visibility = "visible";
     newBetBtn.style.visibility = "visible";
     standBtn.style.visibility = "hidden";
     hitBtn.style.visibility = "hidden";
   }
-  if (totald > 16 && totald == totalp) {
+  if (totald > 16 && totald < 22 && totald == totalp) {
     message.innerText = "Push!";
     message.style.visibility = "visible";
     newBetBtn.style.visibility = "visible";
@@ -328,8 +370,19 @@ function renderNewBet() {
   dealerFifthCard.src = " ";
   dealerSixthCard.src = " ";
   dealerSeventhCard.src = " ";
+  currentWager.innerText = " ";
 }
 
+function renderCash() {
+  cashBalance.innerText = `CASH: $${cash}`;
+}
+
+function renderWager() {
+  currentWager.innerText = `$${wager}`;
+  currentWager.style.fontSize = "40px";
+  currentWager.style.paddingLeft = "4vmin";
+  currentWager.style.paddingTop = "4vmin";
+}
 
 
 
