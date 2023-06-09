@@ -4,8 +4,8 @@ Project Description: Blackjack is a casino banked game, meaning that players com
 
                      How do you beat the dealer?
                      
-                     - By drawing a hand value that is higher than the dealer's hand value
-                     -
+                     * By drawing a hand value that is higher than the dealer's hand value
+                     *
 
                      How do you beat the dealer?
 
